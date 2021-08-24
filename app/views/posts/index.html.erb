@@ -18,9 +18,9 @@
         <td><%= post.name %></td>
         <td><%= post.desc %></td>
         <td><%= post.topic_id %></td>
-        <td><%= link_to 'Show', topic_posts_path(@topic) %></td>
-        <td><%= link_to 'Edit', edit_topic_post_url(@topic, @posts) %></td>
-        <td><%= link_to 'Destroy', topic_post_url(@topic, @posts), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', topic_post_url(@topic, post.id) %></td>
+        <td><%= link_to 'Edit', edit_topic_post_url(@topic, post.id) %></td>
+        <td><%= link_to 'Destroy', topic_post_path(@topic, post.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

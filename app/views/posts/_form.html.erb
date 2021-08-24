@@ -22,8 +22,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :topic_id %>
-    <%= form.text_field :topic_id %>
+    <%= form.label :topic_id,class:"invisible" %>
+    <%= form.text_field :topic_id, id:"disabledTextInput" ,value:@topic.id,  class:"invisible" %>
   </div>
 
   <div class="actions">

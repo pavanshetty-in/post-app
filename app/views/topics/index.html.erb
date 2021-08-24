@@ -19,6 +19,7 @@
         <td><%= topic.name %></td>
         <td><%= topic.subtopic %></td>
         <td><%= topic.link %></td>
+        <td><%= link_to 'Posts',topic_posts_path(topic.id) , class:'btn btn-primary'  %></td>
         <td><%= link_to 'Show', topic, class:'btn btn-info'  %></td>
         <td><%= link_to 'Edit', edit_topic_path(topic),class:'btn btn-info'   %></td>
         <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' },class:'btn btn-info'  %></td>
