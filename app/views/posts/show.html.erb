@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @post.name %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @post.desc %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @post.topic_id %>
+</p>
+
+<%= link_to 'Edit', edit_topic_post_url(@topic, @post) %> |
+<%= link_to 'Back', topic_posts_path(@topic) %>
