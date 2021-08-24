@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1> List Topics</h1>
+<%= link_to 'Add New Topic', new_topic_path, class:'btn btn-primary' %>
+
+<table class="table table-hover mt-3">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Subtopic</th>
+      <th>Link</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td><%= topic.name %></td>
+        <td><%= topic.subtopic %></td>
+        <td><%= topic.link %></td>
+        <td><%= link_to 'Show', topic, class:'btn btn-info'  %></td>
+        <td><%= link_to 'Edit', edit_topic_path(topic),class:'btn btn-info'   %></td>
+        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' },class:'btn btn-info'  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

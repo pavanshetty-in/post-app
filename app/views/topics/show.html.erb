@@ -1,0 +1,24 @@
+<div class="card p-2 m-3" style="width: 18rem;">
+<div class="card-header">
+
+<p id="notice"><%= notice %></p>
+</div>
+
+<p>
+  <strong>Name:</strong>
+  <%= @topic.name %>
+</p>
+
+<p>
+  <strong>Subtopic:</strong>
+  <%= @topic.subtopic %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @topic.link %>
+</p>
+
+<%= link_to 'Edit', edit_topic_path(@topic),class:'btn btn-primary' %> 
+<%= link_to 'Back', topics_path,class:'btn btn-primary mt-3' %>
+</div>
