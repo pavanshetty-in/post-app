@@ -1,0 +1,2 @@
+module AllpostsHelper
+end
