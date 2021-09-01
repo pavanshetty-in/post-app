@@ -10,12 +10,14 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @comments =Comment.where("post_id = ?", params[:id])
   end
 
   # GET /posts/new
   def new
     puts @post
     @post = Post.new
+    
   end
 
   # GET /posts/1/edit
@@ -24,11 +26,20 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = Post.create(post_params)
     @post.topic_id=@topic.id
+    
+    
+    
+    p (params[:tags]),"################################"
+    
 
     respond_to do |format|
-      if @post.save
+      if @post
+
+       @checkTag = Tag.find_or_initialize_by(post_params_tags)
+       Taglink.create(post_id:@post.id,tag_id:@checkTag.id)
+
         format.html { redirect_to topic_posts_url(@post.topic_id), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
@@ -67,10 +78,9 @@ class PostsController < ApplicationController
     end
 
     def set_post
-      p @post,@topic_id,
-      '#######################'
+      
       @post = @topic.posts.find(params[:id])
-      p @post,@topic_id,
+      p @post,@topic,
       '*********************'
 
     end
@@ -79,5 +89,8 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:name, :desc, :topic_id)
+    end
+    def post_params_tags
+      params.require(:post).permit(:tag_name)
     end
 end

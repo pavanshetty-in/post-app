@@ -10,12 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_24_152912) do
+ActiveRecord::Schema.define(version: 2021_08_27_111837) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string "comment"
+    t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "name"
     t.string "desc"
     t.string "topic_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "tag_name"
+  end
+
+  create_table "posts_tags", id: false, force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "post_id", null: false
+  end
+
+  create_table "taglinks", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
