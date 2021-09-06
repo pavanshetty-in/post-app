@@ -33,5 +33,11 @@ Tag.select('tags.id,tags.tag_name').joins(:taglink).joins(:post).where('posts.id
 <div class="field">
     
     <%= collection_select :tag_ids, Tag.all, :id, :tag_name, {}, {multiple:true} %>
+
+
   </div>
 
+
+
+This Query is not working for fetching topic name along with posts
+ Post.offset(4).limit(5).joins(:topic).select('posts.*').select('topics.name ')
