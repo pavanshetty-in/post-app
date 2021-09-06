@@ -39,11 +39,7 @@ class PostsController < ApplicationController
     @post = Post.create(post_params)
     @post.topic_id=@topic.id
     
-    
-    
-    p (params[:tags]),"################################"
-    
-
+  
     respond_to do |format|
       if @post
 
@@ -90,8 +86,6 @@ class PostsController < ApplicationController
     def set_post
       
       @post = @topic.posts.find(params[:id])
-      p @post,@topic,
-      '*********************'
 
     end
     
