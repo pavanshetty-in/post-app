@@ -26,5 +26,14 @@
     <% end %>
   </tbody>
 </table>
+<div class="txt-center">
+<ul class="pagination">
+<%= link_to " Previous Page ", allposts_path(page: @page - 1), class:"page-item btn border m-2" %>
+<%= link_to @page  , allposts_path(page: @page), class:"page-item btn border m-2" %>
+<%= link_to @page + 1  , allposts_path(page: @page + 1), class:"page-item btn border m-2" %>
+<%= link_to @page + 2  , allposts_path(page: @page + 2), class:"page-item btn border m-2" %>
+<%= link_to " Next Page ", allposts_path(page: @page + 1), class:"page-item btn border m-2" %>
+</ul>
+</div>
 
 <br>
