@@ -14,6 +14,11 @@
   <strong>Topic:</strong>
   <%= @post.topic_id %>
 </p>
+<% @tags.each do |tag| %>
+<p>
+<%= tag %>
+</p>
+<% end %>
 <div>
 <%= link_to 'Edit', edit_topic_post_url(@topic, @post), class:'btn btn-info' %> |
 <%= link_to 'Back', topic_posts_path(@topic), class:'btn btn-primary' %>

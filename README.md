@@ -30,3 +30,8 @@ Tag.find_by_sql("SELECT tags.tag_name FROM tags INNER JOIN taglinks ON tags.id=t
 Tag.find_by_sql("SELECT tags.tag_name FROM tags INNER JOIN taglinks ON tags.id=taglinks.tag_id INNER JOIN posts ON posts.id=Taglinks.post_id AND posts.id=21")
 
 Tag.select('tags.id,tags.tag_name').joins(:taglink).joins(:post).where('posts.id=?',21)
+<div class="field">
+    
+    <%= collection_select :tag_ids, Tag.all, :id, :tag_name, {}, {multiple:true} %>
+  </div>
+

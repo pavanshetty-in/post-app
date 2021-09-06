@@ -10,18 +10,28 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    
     @comments =Comment.where("post_id = ?", params[:id])
+    @post = Post.find(params[:id])
+    @tags = @post.tags
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @post }
+    end
   end
 
   # GET /posts/new
   def new
     puts @post
     @post = Post.new
+    @tags=Tag.all
     
   end
 
   # GET /posts/1/edit
   def edit
+    @tags=Tag.all
   end
 
   # POST /posts or /posts.json
@@ -37,7 +47,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post
 
-       @checkTag = Tag.find_or_initialize_by(post_params_tags)
+       @checkTag = Tag.create(post_params_tags)
        Taglink.create(post_id:@post.id,tag_id:@checkTag.id)
 
         format.html { redirect_to topic_posts_url(@post.topic_id), notice: "Post was successfully created." }

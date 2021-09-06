@@ -21,6 +21,13 @@
     <%= form.text_field :desc %>
   </div>
 
+  <% @tags.each do |tag| %>
+    <div>
+     <%= check_box_tag "post[tag_ids][]", tag.id, @post.tags.include?(tag) %> 
+     <%= tag.tag_name %>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= form.label :Tags %>
     <%= form.text_field :tag_name %>
