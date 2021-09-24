@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.where("topic_id = ?", params[:topic_id])
+    # @posts= topic.Post.all
   end
 
   # GET /posts/1 or /posts/1.json
@@ -42,9 +43,13 @@ class PostsController < ApplicationController
   
     respond_to do |format|
       if @post
-
-       @checkTag = Tag.create(post_params_tags)
-       Taglink.create(post_id:@post.id,tag_id:@checkTag.id)
+        p params[:tag_name]
+        if params[:tag_name].present?
+          newTag = Tag.create(post_params_tags)
+          @post.tags << newTag
+        end
+     
+       
 
         format.html { redirect_to topic_posts_url(@post.topic_id), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
@@ -92,9 +97,9 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:name, :desc, :topic_id)
+      params.require(:post).permit(:name, :desc, :topic_id,:tag_name, tag_ids:[])
     end
-    def post_params_tags
-      params.require(:post).permit(:tag_name)
-    end
+    # def post_params_tags
+    #   params.require(:post).permit(:tag_name)
+    # end
 end

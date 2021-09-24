@@ -14,9 +14,10 @@
   <strong>Topic:</strong>
   <%= @post.topic_id %>
 </p>
+<p><strong>Tags: </strong></p>
 <% @tags.each do |tag| %>
 <p>
-<%= tag %>
+<%= tag.tag_name %>
 </p>
 <% end %>
 <div>
