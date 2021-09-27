@@ -43,8 +43,9 @@ class PostsController < ApplicationController
   
     respond_to do |format|
       if @post
-        p params[:tag_name]
-        if params[:tag_name].present?
+        @tagname = params[:tag_name]
+        p @tagname
+        if  @tagnam.present?
           newTag = Tag.create(post_params_tags)
           @post.tags << newTag
         end
@@ -97,7 +98,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:name, :desc, :topic_id,:tag_name, tag_ids:[])
+      params.require(:post).permit(:name, :desc, :topic_id, :tag_name, tag_ids:[])
     end
     # def post_params_tags
     #   params.require(:post).permit(:tag_name)
